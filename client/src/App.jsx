@@ -2,6 +2,8 @@ import React from 'react';
 import "./App.css";
 import Board from './components/Board';
 import Menu from './components/Menu';
+import { BrowserRouter } from 'react-router-dom';
+import AppRouter from './components/AppRouter';
 
 const App = () => {
     const boards = [
@@ -30,19 +32,22 @@ const App = () => {
     ];
 
     return (
-        <div className="main-area">
-            <div className="header-area" />
-            <div className="flex-container">
-                <Menu />
-                <div className="flex-container content-area">
-                    {boards.map((board) => {
-                        return (
-                            <Board key={board.boardId} boardName={board.boardName} items={board.items} />
-                        )
-                    })}
+        <BrowserRouter>
+            <div className="main-area">
+                <div className="header-area" />
+                <div className="flex-container">
+                    <Menu />
+                    <AppRouter />
+                    {/* <div className="flex-container content-area">
+                        {boards.map((board) => {
+                            return (
+                                <Board key={board.boardId} boardName={board.boardName} items={board.items} />
+                            )
+                        })}
+                    </div> */}
                 </div>
             </div>
-        </div>
+        </BrowserRouter>
     )
 }
 
