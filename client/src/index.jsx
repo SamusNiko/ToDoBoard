@@ -7,7 +7,7 @@ import TaskStore from './store/TaskStore';
 export const Context = createContext(null);
 
 ReactDOM.render(
-  <Context.Provider value={{task: new TaskStore()}}>
+  <Context.Provider value={{tasks: new TaskStore()}}>
     <React.StrictMode>
       <App />
     </React.StrictMode>

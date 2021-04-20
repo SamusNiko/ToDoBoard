@@ -1,8 +1,9 @@
 import React from 'react'
+import './styles/style.css';
 
-const Info = () =>{
+const Info = () => {
     return (
-        <div>
+        <div className="flex">
             Info
         </div>
     )

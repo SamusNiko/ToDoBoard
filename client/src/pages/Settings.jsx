@@ -1,12 +1,12 @@
 import React from 'react';
 import './styles/style.css';
 
-const TasksList = () => {
+const Settings = () => {
     return (
         <div className="flex">
-            Tasks
+            Settings
         </div>
     )
 }
 
-export default TasksList;
+export default Settings;

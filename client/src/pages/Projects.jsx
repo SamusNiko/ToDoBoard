@@ -1,8 +1,9 @@
 import React from 'react'
+import './styles/style.css';
 
 const Projects = () =>{
     return (
-        <div>
+        <div className="flex">
             Projects
         </div>
     )

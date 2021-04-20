@@ -1,17 +1,9 @@
 .flex-container {
     display: flex;
-    justify-content: space-between;
 }
 
 .main-area {
     padding: 10px;
-    width: auto;
-}
-
-.content-area {
-    padding: 10px;
-    width: 78%;
-    border: 2px solid black;
 }
 
 .header-area {
