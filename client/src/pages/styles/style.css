@@ -3,3 +3,9 @@
     width: 100%;
     box-sizing: border-box;
 }
+
+.block {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+}

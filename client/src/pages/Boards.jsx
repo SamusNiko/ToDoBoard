@@ -8,12 +8,12 @@ const Boards = observer(() => {
     const { tasks } = useContext(Context);
     const [currentTask, setCurrentTask] = useState(null);
 
-    function dragOverHandler(e, item, board) {
+    function dragOverHandler(e) {
         e.preventDefault();
         e.target.style.boxShadow = '0 2px 3px gray';
     }
 
-    function dragStartHandler(e, item, board) {
+    function dragStartHandler(e, item) {
         setCurrentTask(item);
     }
 

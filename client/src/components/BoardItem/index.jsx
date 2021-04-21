@@ -5,11 +5,11 @@ const BoardItem = ({ item, board, itemCount, dragStartHandler, dragOverHandler, 
 
     return (
         <div draggable={true} className="boardItem"
-            onDragStart={(e) => dragStartHandler(e, item, board)}
-            onDragOver={(e) => dragOverHandler(e, item, board)}
+            onDragStart={(e) => dragStartHandler(e, item)}
+            onDragOver={(e) => dragOverHandler(e)}
             onDragLeave={(e) => dragLeaveHandler(e)}
             onDragEnd={(e) => dragEndHandler(e)}
-            onDrop={(e) => dropHandler(e, item, board)}
+            onDrop={(e) => dropHandler(e, board)}
         >
             {itemCount + 1}. {item.name}
         </div>
