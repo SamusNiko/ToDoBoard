@@ -1,10 +1,17 @@
 import React from 'react';
 import "./style.css";
 
-const BoardItem = ({ name, itemCount }) => {
+const BoardItem = ({ item, board, itemCount, dragStartHandler, dragOverHandler, dragLeaveHandler, dragEndHandler, dropHandler }) => {
+
     return (
-        <div className="boardItem">
-            {itemCount + 1}. {name}
+        <div draggable={true} className="boardItem"
+            onDragStart={(e) => dragStartHandler(e, item, board)}
+            onDragOver={(e) => dragOverHandler(e, item, board)}
+            onDragLeave={(e) => dragLeaveHandler(e)}
+            onDragEnd={(e) => dragEndHandler(e)}
+            onDrop={(e) => dropHandler(e, item, board)}
+        >
+            {itemCount + 1}. {item.name}
         </div>
     )
 }
