@@ -1,18 +1,34 @@
 import React from 'react';
 import "./style.css";
 import BoardItem from '../BoardItem';
+import { observer } from "mobx-react-lite";
 
-const Board = ({ boardName, items }) => {
+const Board = observer(({ items, board, dragLeaveHandler, dropHandler, dragEndHandler, dragStartHandler, dragOverHandler }) => {
+
+
     return (
-        <div className="boardContainer">
-            <h2 className="boarder-title">{boardName}</h2>
+        <div className="boardContainer"
+            onDragOver={(e) => dragOverHandler(e)}
+            onDrop={(e) => dropHandler(e, board)}
+            onDragLeave={(e) => dragLeaveHandler(e)}
+        >
+            <h2 className="boarder-title">{board.name}</h2>
             {items.map((item, index) => {
                 return (
-                    <BoardItem key={item.itemId} itemCount={index} description={item.description} />
+                    <BoardItem
+                        dragLeaveHandler={dragLeaveHandler}
+                        dropHandler={dropHandler}
+                        dragEndHandler={dragEndHandler}
+                        dragStartHandler={dragStartHandler}
+                        dragOverHandler={dragOverHandler}
+                        item={item}
+                        board={board}
+                        key={item.id}
+                        itemCount={index} />
                 )
             })}
         </div>
     )
-};
+});
 
 export default Board;

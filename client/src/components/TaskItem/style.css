@@ -1,0 +1,11 @@
+.task-container {
+    width: 100%;
+    border: 2px solid black;
+    margin: 0px 2px 2px 2px
+}
+
+.task-title {
+    font-size: 15px;
+    color: gray;
+    margin-bottom: 10px;
+}
