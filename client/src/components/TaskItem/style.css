@@ -1,11 +1,37 @@
 .task-container {
-    width: 100%;
+    width: auto;
     border: 2px solid black;
-    margin: 0px 2px 2px 2px
+    border-radius: 10px;
+    padding: 5px 10px 5px 5px;
+    margin: 0px 0px 5px 5px;
+    justify-content: space-between;
+}
+
+.task-status-container {
+    width: 400px;
+    text-align: right;
+    color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+.task-status {
+    padding: 2px 8px;
+    margin-left: auto;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.task-priority {
+    margin-top: 5px;
+    font-size: 15px;
+    font-weight: bold;
 }
 
 .task-title {
-    font-size: 15px;
-    color: gray;
+    font-size: 18px;
+    font-weight: bold;
+    color: rgb(139, 9, 9);
     margin-bottom: 10px;
 }

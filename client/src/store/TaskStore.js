@@ -36,6 +36,22 @@ export default class TaskStore {
         this._tasks = tasks
     }
 
+    getStatusName(id) {
+        let name;
+        this._statuses.some((status) => {
+            return status.id === id ? name = status.name : '';
+        });
+        return name;
+    }
+
+    getPriorityName(id) {
+        let name;
+        this._priorities.some((priority) => {
+            return priority.id === id ? name = priority.name : '';
+        });
+        return name;
+    }
+
     get statuses() {
         return this._statuses
     }
