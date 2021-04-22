@@ -14,7 +14,7 @@ const BoardItem = ({ item, board, itemCount, dragStartHandler, dragOverHandler, 
             {itemCount + 1}. {item.name}
         </div>
     )
-    //empty comment
+    //empty comment 1
 }
 
 export default BoardItem
