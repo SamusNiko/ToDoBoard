@@ -13,7 +13,7 @@
 .crt-task-btn {
     font-size: 14px;
     font-weight: 600;
-    margin: 0px 0px 5px 5px;
+    margin: 5px 0px 5px 5px;
     border: 2px solid black;
     border-radius: 5px;
     width: 150px;
@@ -31,4 +31,25 @@
 .crt-task-btn:active {
     cursor: pointer;
     background-color: rgba(0, 154, 201, 0.438);
+}
+
+.filter {
+    margin: 5px 10px;
+}
+
+.filter label {
+    font-weight: 600;
+    margin-right: 5px;
+}
+
+.filter select {
+    cursor: pointer;
+    padding: 5px;
+    font-size: 16px;
+}
+
+.filter option {
+    cursor: pointer;
+    padding: 5px;
+    font-size: 16px;
 }

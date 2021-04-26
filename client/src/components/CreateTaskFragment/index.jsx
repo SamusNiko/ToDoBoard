@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { Context } from '../../index';
 import './style.css'
 
-const CreateTaskFragment = ({ visible, closePopover, currentTask, setCurrentTask }) => {
+const CreateTaskFragment = ({ visible, closePopover, currentTask, setCurrentTask, saveTask }) => {
     const { tasks } = useContext(Context);
 
     const onInputChange = (e, propName) => {
@@ -13,18 +13,15 @@ const CreateTaskFragment = ({ visible, closePopover, currentTask, setCurrentTask
         setCurrentTask({ ...currentTask, priorityId: +e.target.value });
     }
 
+    const onSaveClick = () => {
+        saveTask(currentTask);
+        closePopover();
+    }
+
     const onCancelClick = () => {
         closePopover();
     }
 
-    const onSaveClick = () => {
-        if (currentTask.id) {
-            tasks.updateTask(currentTask);
-        } else {
-            tasks.pushNewTask(currentTask);
-        }
-        onCancelClick();
-    }
 
     return (
         <div style={visible ? { display: "block" } : { display: "none" }} className="crt-task-background">
@@ -32,7 +29,7 @@ const CreateTaskFragment = ({ visible, closePopover, currentTask, setCurrentTask
                 <p>Name</p>
                 <input onChange={(e) => onInputChange(e, "name")} value={currentTask.name} />
                 <p>Description</p>
-                <input onChange={(e) => onInputChange(e, "description")} value={currentTask.description} />
+                <textarea onChange={(e) => onInputChange(e, "description")} value={currentTask.description} />
                 <div>
                     <p>Priority</p>
                     <select onChange={(e) => onPriorityChange(e)} value={currentTask.priorityId}>
