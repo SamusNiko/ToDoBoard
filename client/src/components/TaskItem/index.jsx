@@ -5,11 +5,11 @@ import { faTimes, faMarker } from '@fortawesome/free-solid-svg-icons'
 import { setPriorityColor, setStatusColor } from '../../utils/helper';
 import "./style.css";
 
-const TaskItem = ({ task, onEditTaskClick }) => {
+const TaskItem = ({ task, onEditTaskClick, deleteTask}) => {
     const { tasks } = useContext(Context);
 
     const onDeleteTaskClick = (id) => {
-        tasks.removeTask(id);
+        deleteTask(id)
     }
 
     return (

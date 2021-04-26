@@ -37,6 +37,11 @@ const TasksList = observer(() => {
         applyFilters(statusFilter, priorityFilter)
     }
 
+    const deleteTask = (id) => {
+        tasks.removeTask(id);
+        applyFilters(statusFilter, priorityFilter);
+    }
+
     const closeCreateTaskPopover = () => {
         setCurrentTask(defaultTask);
         setPopoverVisible(false);
@@ -99,7 +104,7 @@ const TasksList = observer(() => {
             </div>
             {taskList.map((task) => {
                 return (
-                    <TaskItem onEditTaskClick={onEditTaskClick} key={task.id} task={task} />
+                    <TaskItem deleteTask={deleteTask} onEditTaskClick={onEditTaskClick} key={task.id} task={task} />
                 )
             })}
         </div>
