@@ -6,25 +6,37 @@ import { observer } from "mobx-react-lite";
 import './styles/style.css';
 
 const TasksList = observer(() => {
+    const defaultTask = {
+        name: "",
+        description: "",
+        statusId: 1,
+        priorityId: 1
+    }
     const { tasks } = useContext(Context);
     const [createTaskPopoverVisible, setPopoverVisible] = useState(false);
+    const [currentTask, setCurrentTask] = useState(defaultTask);
 
-    const openCreateTaskPopover = (e) => {
-        console.log("press")
+
+    const openCreateTaskPopover = () => {
         setPopoverVisible(true)
     }
-    const closeCreateTaskPopover = (e) => {
-        setPopoverVisible(false)
+    const onEditTaskClick = (task) => {
+        setCurrentTask({ ...task });
+        setPopoverVisible(true);
+    }
+    const closeCreateTaskPopover = () => {
+        setCurrentTask(defaultTask);
+        setPopoverVisible(false);
     }
     return (
         <div className="block">
             <div>
-                <button onClick={(e) => openCreateTaskPopover(e)} className="crt-task-btn">Create Task</button>
-                <CreateTaskFragment visible={createTaskPopoverVisible} closePopover={closeCreateTaskPopover}/>
+                <button onClick={() => openCreateTaskPopover()} className="crt-task-btn">Create Task</button>
+                <CreateTaskFragment currentTask={currentTask} setCurrentTask={setCurrentTask} visible={createTaskPopoverVisible} closePopover={closeCreateTaskPopover} />
             </div>
             {tasks._tasks.map((task) => {
                 return (
-                    <TaskItem key={task.id} task={task} />
+                    <TaskItem onEditTaskClick={onEditTaskClick} key={task.id} task={task} />
                 )
             })}
         </div>

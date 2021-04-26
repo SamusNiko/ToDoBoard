@@ -38,8 +38,17 @@ export default class TaskStore {
     }
 
     pushNewTask(newTask) {
-        this._tasks.push(newTask);
+        this._tasks.push({...newTask, id: this._taskCount });
         this._taskCount = this._taskCount + 1;
+    }
+
+    updateTask(updatedTask) {
+        this._tasks = this._tasks.map((task) => {
+            if (task.id === updatedTask.id) {
+                return updatedTask;
+            }
+            return task;
+        })
     }
 
     removeTask(taskId) {

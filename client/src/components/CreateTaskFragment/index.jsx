@@ -1,38 +1,28 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { Context } from '../../index';
 import './style.css'
 
-const CreateTaskFragment = ({ visible, closePopover }) => {
+const CreateTaskFragment = ({ visible, closePopover, currentTask, setCurrentTask }) => {
     const { tasks } = useContext(Context);
-    const defaultTask = {
-        id: tasks._taskCount,
-        name: "",
-        description: "",
-        statusId: 1,
-        priorityId: 1
-    }
 
-    const [newTask, setNewTask] = useState(defaultTask);
-
-    const onTaskNameChange = (e) => {
-        setNewTask({ ...newTask, name: e.target.value });
-    }
-
-    const onTaskDescriptionChange = (e) => {
-        setNewTask({ ...newTask, description: e.target.value });
+    const onInputChange = (e, propName) => {
+        setCurrentTask({ ...currentTask, [propName]: e.target.value });
     }
 
     const onPriorityChange = (e) => {
-        setNewTask({ ...newTask, priorityId: +e.target.value });
+        setCurrentTask({ ...currentTask, priorityId: +e.target.value });
     }
 
     const onCancelClick = () => {
-        setNewTask(defaultTask);
         closePopover();
     }
 
     const onSaveClick = () => {
-        tasks.pushNewTask(newTask);
+        if (currentTask.id) {
+            tasks.updateTask(currentTask);
+        } else {
+            tasks.pushNewTask(currentTask);
+        }
         onCancelClick();
     }
 
@@ -40,12 +30,12 @@ const CreateTaskFragment = ({ visible, closePopover }) => {
         <div style={visible ? { display: "block" } : { display: "none" }} className="crt-task-background">
             <div className="crt-task-container" >
                 <p>Name</p>
-                <input onChange={(e) => onTaskNameChange(e)} value={newTask.name} />
+                <input onChange={(e) => onInputChange(e, "name")} value={currentTask.name} />
                 <p>Description</p>
-                <input onChange={(e) => onTaskDescriptionChange(e)} value={newTask.description} />
+                <input onChange={(e) => onInputChange(e, "description")} value={currentTask.description} />
                 <div>
                     <p>Priority</p>
-                    <select onChange={(e) => onPriorityChange(e)} value={newTask.priorityId}>
+                    <select onChange={(e) => onPriorityChange(e)} value={currentTask.priorityId}>
                         {tasks._priorities.map((priority) => {
                             return (
                                 <option key={priority.id} value={priority.id}>{priority.name}</option>
