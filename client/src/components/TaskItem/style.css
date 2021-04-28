@@ -1,11 +1,71 @@
 .task-container {
-    width: 100%;
+    width: auto;
     border: 2px solid black;
-    margin: 0px 2px 2px 2px
+    border-radius: 10px;
+    padding: 5px 10px 5px 5px;
+    margin: 0px 0px 5px 5px;
+}
+
+.task-status-container {
+    width: 24%;
+    min-width: 150px;
+    text-align: right;
+    color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+.task-description {
+    width: 75%;
+}
+
+.task-status {
+    padding: 2px 8px;
+    margin-left: auto;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.task-delete-btn {
+    background: none;
+    border: none;
+    font-size: 18px;
+    color: red;
+}
+
+.task-delete-btn:hover {
+    color: rgb(141, 31, 31);
+    cursor: pointer;
+}
+
+.task-edit-btn {
+    background: none;
+    border: none;
+    padding-top: 7px;
+    font-size: 17px;
+    color: rgb(70, 60, 60);
+}
+
+.task-edit-btn:hover {
+    color: rgb(29, 24, 24);
+    cursor: pointer;
+}
+
+.task-priority {
+    margin-top: 5px;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.task-buttons-container {
+    text-align: end;
+    width: 35px;
 }
 
 .task-title {
-    font-size: 15px;
-    color: gray;
+    font-size: 18px;
+    font-weight: bold;
+    color: rgb(139, 9, 9);
     margin-bottom: 10px;
 }

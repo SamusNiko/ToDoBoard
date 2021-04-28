@@ -4,7 +4,7 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     height: 100vh;
-    background-color: bisque;
+    background-color: rgb(226, 249, 255);
 }
 
 div,
@@ -22,4 +22,40 @@ section {
 
 code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+.priority-default {
+    color: aquamarine;
+}
+
+.priority-low {
+    color: rgb(36, 175, 8)
+}
+
+.priority-medium {
+    color: rgb(255, 174, 0)
+}
+
+.priority-high {
+    color: rgb(255, 111, 27)
+}
+
+.priority-veryhigh {
+    color: rgb(255, 15, 15)
+}
+
+.status-todo {
+    background-color: rgb(46, 78, 255);
+}
+
+.status-in-progress {
+    background-color: rgb(252, 173, 26);
+}
+
+.status-blocked {
+    background-color: rgb(189, 0, 0);
+}
+
+.status-done {
+    background-color: rgb(26, 153, 0);
 }

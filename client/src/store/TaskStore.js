@@ -2,6 +2,7 @@ import { makeAutoObservable } from 'mobx';
 
 export default class TaskStore {
     constructor() {
+        this._taskCount = 6
         this._statuses = [
             { id: 1, name: "To Do" },
             { id: 2, name: "In Progress" },
@@ -36,6 +37,43 @@ export default class TaskStore {
         this._tasks = tasks
     }
 
+    pushNewTask(newTask) {
+        this._tasks.push({...newTask, id: this._taskCount });
+        this._taskCount = this._taskCount + 1;
+    }
+
+    updateTask(updatedTask) {
+        this._tasks = this._tasks.map((task) => {
+            if (task.id === updatedTask.id) {
+                return updatedTask;
+            }
+            return task;
+        })
+    }
+
+    removeTask(taskId) {
+        this._tasks = this._tasks.filter((task) => {
+            console.log(task.id !== taskId)
+            return task.id !== taskId;
+        });
+    }
+
+    getStatusName(id) {
+        let name;
+        this._statuses.some((status) => {
+            return status.id === id ? name = status.name : '';
+        });
+        return name;
+    }
+
+    getPriorityName(id) {
+        let name;
+        this._priorities.some((priority) => {
+            return priority.id === id ? name = priority.name : '';
+        });
+        return name;
+    }
+
     get statuses() {
         return this._statuses
     }
@@ -44,5 +82,9 @@ export default class TaskStore {
     }
     get tasks() {
         return this._tasks
+    }
+
+    get taskCount() {
+        return this._taskCount
     }
 }
