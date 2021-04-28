@@ -5,11 +5,11 @@ import { faTimes, faMarker } from '@fortawesome/free-solid-svg-icons'
 import { setPriorityColor, setStatusColor } from '../../utils/helper';
 import "./style.css";
 
-const TaskItem = ({ task, onEditTaskClick, deleteTask}) => {
+const TaskItem = ({ task, onEditTaskClick, onDeleteTask}) => {
     const { tasks } = useContext(Context);
 
-    const onDeleteTaskClick = (id) => {
-        deleteTask(id)
+    const onDeleteTaskClick = (task) => {
+        onDeleteTask(task)
     }
 
     return (
@@ -23,7 +23,7 @@ const TaskItem = ({ task, onEditTaskClick, deleteTask}) => {
                 <p className={setPriorityColor(task.priorityId) + " task-priority"}>{tasks.getPriorityName(task.priorityId)}</p>
             </div>
             <div className="task-buttons-container">
-                <button onClick={() => onDeleteTaskClick(task.id)} className="task-delete-btn"><FontAwesomeIcon icon={faTimes} /></button>
+                <button onClick={() => onDeleteTaskClick(task)} className="task-delete-btn"><FontAwesomeIcon icon={faTimes} /></button>
                 <button onClick={() => onEditTaskClick(task)} className="task-edit-btn"><FontAwesomeIcon icon={faMarker} /></button>
             </div>
         </div>
