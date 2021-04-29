@@ -1,9 +1,10 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import TaskItem from '../components/TaskItem';
 import CreateTaskFragment from "../components/CreateTaskFragment";
 import { Context } from '../index.jsx';
 import { observer } from "mobx-react-lite";
 import './styles/style.css';
+import { fetchPriorities, fetchStatuses, fetchTasks, createTask, updateTask, deleteTask } from '../http/taskApi';
 
 const TasksList = observer(() => {
     const defaultTask = {
@@ -13,11 +14,26 @@ const TasksList = observer(() => {
         priorityId: 1
     }
     const { tasks } = useContext(Context);
-    const [taskList, setTaskList] = useState(tasks._tasks);
     const [priorityFilter, setPriorityFilter] = useState(0);
     const [statusFilter, setStatusFilter] = useState(0);
     const [createTaskPopoverVisible, setPopoverVisible] = useState(false);
     const [currentTask, setCurrentTask] = useState(defaultTask);
+
+    useEffect(() => {
+        fetchPriorities().then(data => tasks.setPriorities(data))
+        fetchStatuses().then(data => tasks.setStatuses(data))
+        fetchTasks(null, null).then(data => {
+            tasks.setTasks(data.rows)
+            tasks.setTaskCount(data.count)
+        })
+    }, [])
+
+    useEffect(() => {
+        fetchTasks(statusFilter, priorityFilter).then(data => {
+            tasks.setTasks(data.rows)
+            tasks.setTaskCount(data.count)
+        })
+    }, [priorityFilter, statusFilter]);
 
     const openCreateTaskPopover = () => {
         setPopoverVisible(true)
@@ -28,18 +44,26 @@ const TasksList = observer(() => {
         setPopoverVisible(true);
     }
 
-    const saveTask = (task) => {
+    const saveTask = async (task) => {
+        let data
         if (task.id) {
-            tasks.updateTask(task);
+            data = await updateTask(task);
         } else {
-            tasks.pushNewTask(task);
+            data = await createTask(task);
         }
-        applyFilters(statusFilter, priorityFilter)
+        fetchTasks(statusFilter, priorityFilter).then(data => {
+            tasks.setTasks(data.rows)
+            tasks.setTaskCount(data.count)
+        })
     }
 
-    const deleteTask = (id) => {
-        tasks.removeTask(id);
-        applyFilters(statusFilter, priorityFilter);
+    const onDeleteTask = (task) => {
+        deleteTask(task).then(() => {
+            fetchTasks(statusFilter, priorityFilter).then(data => {
+                tasks.setTasks(data.rows)
+                tasks.setTaskCount(data.count)
+            })
+        });
     }
 
     const closeCreateTaskPopover = () => {
@@ -50,27 +74,11 @@ const TasksList = observer(() => {
     const setFilterByPriority = (e) => {
         const selectedPriorityId = +e.target.value;
         setPriorityFilter(selectedPriorityId);
-        applyFilters(statusFilter, selectedPriorityId);
     }
 
     const setFilterByStatus = (e) => {
         const selectedStatusId = +e.target.value;
         setStatusFilter(selectedStatusId);
-        applyFilters(selectedStatusId, priorityFilter);
-    }
-
-    const applyFilters = (status, priority) => {
-        let filteredTasks;
-        if (status === 0 && priority !== 0) {
-            filteredTasks = tasks._tasks.filter((task) => task.priorityId === priority);
-        } else if (status !== 0 && priority === 0) {
-            filteredTasks = tasks._tasks.filter((task) => task.statusId === status);
-        } else if (status !== 0 && priority !== 0) {
-            filteredTasks = tasks._tasks.filter((task) => task.statusId === status && task.priorityId === priority);
-        } else {
-            filteredTasks = tasks._tasks;
-        }
-        setTaskList(filteredTasks);
     }
 
     return (
@@ -102,9 +110,9 @@ const TasksList = observer(() => {
                 </div>
 
             </div>
-            {taskList.map((task) => {
+            {tasks._tasks.map((task) => {
                 return (
-                    <TaskItem deleteTask={deleteTask} onEditTaskClick={onEditTaskClick} key={task.id} task={task} />
+                    <TaskItem onDeleteTask={onDeleteTask} onEditTaskClick={onEditTaskClick} key={task.id} task={task} />
                 )
             })}
         </div>

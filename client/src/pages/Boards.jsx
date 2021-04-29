@@ -1,12 +1,20 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import Board from '../components/Board';
 import { Context } from '../index.jsx';
 import { observer } from "mobx-react-lite";
 import './styles/style.css';
+import { fetchTasks, updateTask } from '../http/taskApi';
 
 const Boards = observer(() => {
     const { tasks } = useContext(Context);
     const [currentTask, setCurrentTask] = useState(null);
+
+    useEffect(() => {
+        fetchTasks(null, null).then(data => {
+            tasks.setTasks(data.rows)
+            tasks.setTaskCount(data.count)
+        })
+    }, []);
 
     function dragOverHandler(e) {
         e.preventDefault();
@@ -30,6 +38,12 @@ const Boards = observer(() => {
         e.target.style.boxShadow = 'none';
         if (currentTask.statusId !== board.id) {
             currentTask.statusId = board.id
+            updateTask(currentTask).then(() => {
+                fetchTasks(null, null).then(data => {
+                    tasks.setTasks(data.rows)
+                    tasks.setTaskCount(data.count)
+                });
+            })
         }
     }
 

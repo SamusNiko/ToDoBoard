@@ -2,26 +2,10 @@ import { makeAutoObservable } from 'mobx';
 
 export default class TaskStore {
     constructor() {
-        this._taskCount = 6
-        this._statuses = [
-            { id: 1, name: "To Do" },
-            { id: 2, name: "In Progress" },
-            { id: 3, name: "Blocked" },
-            { id: 4, name: "Done" }
-        ];
-        this._priorities = [
-            { id: 1, name: "Low" },
-            { id: 2, name: "Medium" },
-            { id: 3, name: "High" },
-            { id: 4, name: "Very High" }
-        ];
-        this._tasks = [
-            { id: 1, name: "Learn React", description: "Learn hooks", statusId: 1, priorityId: 2 },
-            { id: 2, name: "Learn English", description: "Learn verbs", statusId: 2, priorityId: 2 },
-            { id: 3, name: "Do english home work", description: "Read text, write message", statusId: 4, priorityId: 4 },
-            { id: 4, name: "Walk my dog", description: "Walk my dog after work", statusId: 4, priorityId: 1 },
-            { id: 5, name: "Wash  dishes", description: "Wash dishes after lunch", statusId: 2, priorityId: 3 }
-        ];
+        this._taskCount = 0
+        this._statuses = [];
+        this._priorities = [];
+        this._tasks = [];
         makeAutoObservable(this);
     }
 
@@ -37,25 +21,8 @@ export default class TaskStore {
         this._tasks = tasks
     }
 
-    pushNewTask(newTask) {
-        this._tasks.push({...newTask, id: this._taskCount });
-        this._taskCount = this._taskCount + 1;
-    }
-
-    updateTask(updatedTask) {
-        this._tasks = this._tasks.map((task) => {
-            if (task.id === updatedTask.id) {
-                return updatedTask;
-            }
-            return task;
-        })
-    }
-
-    removeTask(taskId) {
-        this._tasks = this._tasks.filter((task) => {
-            console.log(task.id !== taskId)
-            return task.id !== taskId;
-        });
+    setTaskCount(count) {
+        this._taskCount = count;
     }
 
     getStatusName(id) {
