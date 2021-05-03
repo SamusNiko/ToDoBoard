@@ -1,18 +1,32 @@
 import { $host } from "./index";
 
-export const fetchTasks = async(statusId, priorityId) => {
+export const fetchTasks = async(statusId, priorityId, projectId) => {
     if (statusId === 0) {
         statusId = null;
     }
     if (priorityId === 0) {
         priorityId = null;
     }
+    if (projectId === 0) {
+        projectId = null;
+    }
     const { data } = await $host.get('api/task', {
         params: {
             statusId,
-            priorityId
+            priorityId,
+            projectId
         }
     });
+    return data;
+}
+
+export const fetchProjects = async() => {
+    const { data } = await $host.get('api/project');
+    return data;
+}
+
+export const fetchOneProject = async(id) => {
+    const { data } = await $host.get('api/project/' + id);
     return data;
 }
 

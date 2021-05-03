@@ -53,3 +53,30 @@
     padding: 5px;
     font-size: 16px;
 }
+
+.project-page {
+    flex-wrap: wrap;
+}
+
+.add-proj-btn {
+    color: rgb(196, 192, 192);
+    font-size: 60px;
+}
+
+.project-tile {
+    box-sizing: border-box;
+    color: black;
+    width: 24%;
+    min-width: 200px;
+    height: 200px;
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 0px 0px 20px 1%;
+    text-decoration: none;
+}
+
+.project-tile:hover {
+    background-color: rgba(116, 111, 111, 0.25);
+    cursor: pointer;
+}

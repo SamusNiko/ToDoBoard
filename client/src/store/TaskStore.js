@@ -6,6 +6,7 @@ export default class TaskStore {
         this._statuses = [];
         this._priorities = [];
         this._tasks = [];
+        this._projects = [];
         makeAutoObservable(this);
     }
 
@@ -19,6 +20,10 @@ export default class TaskStore {
 
     setTasks(tasks) {
         this._tasks = tasks
+    }
+
+    setProjects(projects) {
+        this._projects = projects;
     }
 
     setTaskCount(count) {
@@ -49,6 +54,10 @@ export default class TaskStore {
     }
     get tasks() {
         return this._tasks
+    }
+
+    get projects() {
+        return this._projects
     }
 
     get taskCount() {
