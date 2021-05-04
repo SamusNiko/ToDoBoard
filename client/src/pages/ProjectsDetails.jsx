@@ -17,15 +17,19 @@ const ProjectDetails = () => {
     }, [id, tasks])
 
     return (
-        <div className="block">
-            <div>{project.name} {project.id}</div>
-            <div>{project.description}</div>
-            <div>
-                {project.tasks.map((task) => {
-                    return (
-                        <TaskItem key={task.id} task={task} />
-                    )
-                })}
+        <div className="block project-details-container">
+            <div class="project-details-title">Project: <b>{project.name}</b></div>
+            <div className="project-details-description">Description: {project.description}</div>
+            <div className="project-tasks-container">
+
+                {project.tasks.length ?
+                    project.tasks.map((task) => {
+                        return (
+                            <TaskItem key={task.id} task={task} />
+                        )
+                    }) : <div className="not-task-text">You don't have any tasks for this project</div>
+                }
+
             </div>
         </div>
 

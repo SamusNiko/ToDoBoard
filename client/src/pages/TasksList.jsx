@@ -127,11 +127,14 @@ const TasksList = observer(() => {
                     </select>
                 </div>
             </div>
-            {tasks._tasks.map((task) => {
-                return (
-                    <TaskItem onDeleteTask={onDeleteTask} onEditTaskClick={onEditTaskClick} key={task.id} task={task} />
-                )
-            })}
+            <div className="tasks-container">
+
+                {tasks._tasks.length ? tasks._tasks.map((task) => {
+                    return (
+                        <TaskItem onDeleteTask={onDeleteTask} onEditTaskClick={onEditTaskClick} key={task.id} task={task} />
+                    )
+                }) : <div className="not-task-text">You don't have any tasks</div>}
+            </div>
         </div>
     )
 })
