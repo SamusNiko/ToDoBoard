@@ -12,7 +12,17 @@ class ProjectController {
     }
 
     async delete(req, res) {
-
+        const { id } = req.body;
+        const project = await Project.findOne({
+            where: { id }
+        }, );
+        const tasks = await await Task.findAll({ where: { projectId: project.id } })
+            // await task.destroy();
+        await tasks.forEach((task) => {
+            task.destroy();
+        })
+        await project.destroy();
+        return res.json("Project and related tasks were deleted successfully");
     }
 
     async getAllProject(req, res) {
