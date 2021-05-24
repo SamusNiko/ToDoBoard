@@ -53,3 +53,73 @@
     padding: 5px;
     font-size: 16px;
 }
+
+.tasks-container {
+    margin-left: 5px;
+    max-height: 80vh;
+    overflow-y: auto;
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 5px 5px 0px 0px;
+}
+
+.project-page {
+    flex-wrap: wrap;
+}
+
+.add-proj-btn {
+    color: rgb(196, 192, 192);
+    font-size: 60px;
+}
+
+.project-tile {
+    box-sizing: border-box;
+    color: black;
+    width: 24%;
+    min-width: 200px;
+    height: 200px;
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 0px 0px 20px 1%;
+    text-decoration: none;
+    justify-content: space-between;
+}
+
+.project-tile:hover {
+    background-color: rgba(116, 111, 111, 0.25);
+    cursor: pointer;
+}
+
+.project-tile-content {
+    display: flex;
+    justify-content: space-between;
+}
+
+.project-details-container {
+    padding-left: 5px;
+}
+
+.project-details-title {
+    font-size: 40px;
+}
+
+.project-details-description {
+    font-size: 25px;
+}
+
+.project-tasks-container {
+    margin-top: 15px;
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 5px 5px 0px 0px;
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
+.not-task-text {
+    margin: 5px 10px 10px 10px;
+    text-align: center;
+    font-size: 20px;
+    color: rgb(61, 61, 61);
+}

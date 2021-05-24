@@ -3,18 +3,20 @@ import Board from '../components/Board';
 import { Context } from '../index.jsx';
 import { observer } from "mobx-react-lite";
 import './styles/style.css';
-import { fetchTasks, updateTask } from '../http/taskApi';
+import { fetchTasks,fetchPriorities,fetchStatuses, updateTask } from '../http/taskApi';
 
 const Boards = observer(() => {
     const { tasks } = useContext(Context);
     const [currentTask, setCurrentTask] = useState(null);
 
     useEffect(() => {
+        fetchPriorities().then(data => tasks.setPriorities(data))
+        fetchStatuses().then(data => tasks.setStatuses(data))
         fetchTasks(null, null).then(data => {
             tasks.setTasks(data.rows)
             tasks.setTaskCount(data.count)
         })
-    }, []);
+    }, [tasks]);
 
     function dragOverHandler(e) {
         e.preventDefault();

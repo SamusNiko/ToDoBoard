@@ -4,36 +4,39 @@ import CreateTaskFragment from "../components/CreateTaskFragment";
 import { Context } from '../index.jsx';
 import { observer } from "mobx-react-lite";
 import './styles/style.css';
-import { fetchPriorities, fetchStatuses, fetchTasks, createTask, updateTask, deleteTask } from '../http/taskApi';
+import { fetchPriorities, fetchStatuses, fetchTasks, createTask, updateTask, deleteTask, fetchProjects } from '../http/taskApi';
 
 const TasksList = observer(() => {
     const defaultTask = {
         name: "",
         description: "",
         statusId: 1,
-        priorityId: 1
+        priorityId: 1,
+        projectId: 2 //Default tasks project
     }
     const { tasks } = useContext(Context);
     const [priorityFilter, setPriorityFilter] = useState(0);
     const [statusFilter, setStatusFilter] = useState(0);
+    const [projectFilter, setProjectFilter] = useState(0);
     const [createTaskPopoverVisible, setPopoverVisible] = useState(false);
     const [currentTask, setCurrentTask] = useState(defaultTask);
 
     useEffect(() => {
         fetchPriorities().then(data => tasks.setPriorities(data))
         fetchStatuses().then(data => tasks.setStatuses(data))
+        fetchProjects().then(data => tasks.setProjects(data.rows))
         fetchTasks(null, null).then(data => {
             tasks.setTasks(data.rows)
             tasks.setTaskCount(data.count)
         })
-    }, [])
+    }, [tasks])
 
     useEffect(() => {
-        fetchTasks(statusFilter, priorityFilter).then(data => {
+        fetchTasks(statusFilter, priorityFilter, projectFilter).then(data => {
             tasks.setTasks(data.rows)
             tasks.setTaskCount(data.count)
         })
-    }, [priorityFilter, statusFilter]);
+    }, [tasks, priorityFilter, statusFilter, projectFilter]);
 
     const openCreateTaskPopover = () => {
         setPopoverVisible(true)
@@ -45,16 +48,16 @@ const TasksList = observer(() => {
     }
 
     const saveTask = async (task) => {
-        let data
         if (task.id) {
-            data = await updateTask(task);
+            await updateTask(task);
         } else {
-            data = await createTask(task);
+            await createTask(task);
         }
-        fetchTasks(statusFilter, priorityFilter).then(data => {
+        fetchTasks(statusFilter, priorityFilter, projectFilter).then(data => {
             tasks.setTasks(data.rows)
             tasks.setTaskCount(data.count)
-        })
+        });
+
     }
 
     const onDeleteTask = (task) => {
@@ -75,6 +78,10 @@ const TasksList = observer(() => {
         const selectedPriorityId = +e.target.value;
         setPriorityFilter(selectedPriorityId);
     }
+    const setFilterByProject = (e) => {
+        const selectedProjectId = +e.target.value;
+        setProjectFilter(selectedProjectId);
+    }
 
     const setFilterByStatus = (e) => {
         const selectedStatusId = +e.target.value;
@@ -86,6 +93,17 @@ const TasksList = observer(() => {
             <div className="flex">
                 <button onClick={() => openCreateTaskPopover()} className="crt-task-btn">Create Task</button>
                 <CreateTaskFragment currentTask={currentTask} saveTask={saveTask} setCurrentTask={setCurrentTask} visible={createTaskPopoverVisible} closePopover={closeCreateTaskPopover} />
+                <div className="filter">
+                    <label>Project:</label>
+                    <select value={projectFilter} onChange={(e) => setFilterByProject(e)}>
+                        <option key={0} value={0}>All</option>
+                        {tasks._projects.map((project) => {
+                            return (
+                                <option key={project.id} value={project.id}>{project.name}</option>
+                            )
+                        })}
+                    </select>
+                </div>
                 <div className="filter">
                     <label>Priority:</label>
                     <select value={priorityFilter} onChange={(e) => setFilterByPriority(e)}>
@@ -108,13 +126,15 @@ const TasksList = observer(() => {
                         })}
                     </select>
                 </div>
-
             </div>
-            {tasks._tasks.map((task) => {
-                return (
-                    <TaskItem onDeleteTask={onDeleteTask} onEditTaskClick={onEditTaskClick} key={task.id} task={task} />
-                )
-            })}
+            <div className="tasks-container">
+
+                {tasks._tasks.length ? tasks._tasks.map((task) => {
+                    return (
+                        <TaskItem onDeleteTask={onDeleteTask} onEditTaskClick={onEditTaskClick} key={task.id} task={task} />
+                    )
+                }) : <div className="not-task-text">You don't have any tasks</div>}
+            </div>
         </div>
     )
 })

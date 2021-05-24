@@ -13,6 +13,10 @@ const CreateTaskFragment = ({ visible, closePopover, currentTask, setCurrentTask
         setCurrentTask({ ...currentTask, priorityId: +e.target.value });
     }
 
+    const onProjectChange = (e) => {
+        setCurrentTask({ ...currentTask, projectId: +e.target.value });
+    }
+
     const onSaveClick = () => {
         saveTask(currentTask);
         closePopover();
@@ -26,6 +30,16 @@ const CreateTaskFragment = ({ visible, closePopover, currentTask, setCurrentTask
     return (
         <div style={visible ? { display: "block" } : { display: "none" }} className="crt-task-background">
             <div className="crt-task-container" >
+                <div>
+                    <p>Project</p>
+                    <select onChange={(e) => onProjectChange(e)} value={currentTask.projectId}>
+                        {tasks._projects.map((project) => {
+                            return (
+                                <option key={project.id} value={project.id}>{project.name}</option>
+                            )
+                        })}
+                    </select>
+                </div>
                 <p>Name</p>
                 <input onChange={(e) => onInputChange(e, "name")} value={currentTask.name} />
                 <p>Description</p>
