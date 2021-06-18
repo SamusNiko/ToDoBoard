@@ -2,13 +2,13 @@ const { Task } = require('../models/models');
 
 class TaskController {
     async create(req, res) {
-        const { name, description, statusId, priorityId, projectId } = req.body;
-        const task = await Task.create({ name, description, statusId, priorityId, projectId });
+        const { name, description, statusId, priorityId, projectId, deadLine } = req.body;
+        const task = await Task.create({ name, description, statusId, priorityId, projectId, deadLine });
         return res.json(task);
     }
 
     async update(req, res) {
-        const { id, name, description, statusId, priorityId, projectId } = req.body;
+        const { id, name, description, statusId, priorityId, projectId, deadLine } = req.body;
         const task = await Task.findOne({
             where: { id }
         }, );
@@ -18,6 +18,7 @@ class TaskController {
         task.statusId = statusId;
         task.priorityId = priorityId;
         task.projectId = projectId;
+        task.deadLine = deadLine;
         const updatedTask = await task.save();
         return res.json(updatedTask);
     }

@@ -1,7 +1,8 @@
 .boardItem {
     border: 1px solid rgb(139, 47, 47);
     border-radius: 10px;
-    height: 30px;
+    height: auto;
+    min-height: 60pxcd;
     font-size: 14px;
     padding: 5px;
     margin: 5px;
@@ -9,4 +10,17 @@
 
 .boardItem:hover {
     cursor: pointer;
+    box-shadow: 2px;
+    background-color: rgba(138, 138, 138, 0.384);
+}
+
+.boardItem-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.boardItem-priority {
+    font-size: 14px;
+    font-weight: 600;
 }
