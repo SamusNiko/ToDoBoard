@@ -26,7 +26,15 @@ class ProjectController {
     }
 
     async getAllProject(req, res) {
-        const project = await Project.findAndCountAll();
+        const { withTasks } = req.query;
+        let project;
+        if (withTasks) {
+            project = await Project.findAndCountAll({
+                include: [{ model: Task, as: 'tasks' }]
+            }, );
+        } else {
+            project = await Project.findAndCountAll();
+        }
         return res.json(project);
     }
 

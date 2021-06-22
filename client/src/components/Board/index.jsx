@@ -12,7 +12,7 @@ const Board = observer(({ items, board, dragLeaveHandler, dropHandler, dragEndHa
             onDrop={(e) => dropHandler(e, board)}
             onDragLeave={(e) => dragLeaveHandler(e)}
         >
-            <h2 className="boarder-title">{board.name}</h2>
+            {/* <h2 className="boarder-title">{board.name}</h2> */}
             {items.map((item, index) => {
                 return (
                     <BoardItem

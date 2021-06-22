@@ -2,19 +2,19 @@ import React, { useState } from 'react';
 import './style.css';
 
 const CreateProject = ({ visible, setPopoverVisible, saveProject }) => {
-    const defaultNewTask = {
+    const defaultNewProject = {
         name: "",
         description: ""
     }
 
-    const [newProject, setNewProject] = useState(defaultNewTask)
+    const [newProject, setNewProject] = useState(defaultNewProject)
     const onSaveClick = () => {
         saveProject(newProject);
         onCancelClick();
     }
 
     const onCancelClick = () => {
-        setNewProject(defaultNewTask);
+        setNewProject(defaultNewProject);
         setPopoverVisible(false);
     }
 

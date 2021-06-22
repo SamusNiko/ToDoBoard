@@ -20,8 +20,12 @@ export const fetchTasks = async(statusId, priorityId, projectId) => {
     return data;
 }
 
-export const fetchProjects = async() => {
-    const { data } = await $host.get('api/project');
+export const fetchProjects = async(withTasks) => {
+    const { data } = await $host.get('api/project', {
+        params: {
+            withTasks
+        }
+    });
     return data;
 }
 

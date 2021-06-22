@@ -2,11 +2,16 @@ import React, { useContext } from 'react';
 import { Context } from '../../index';
 import './style.css'
 
-const CreateTaskFragment = ({ visible, closePopover, currentTask, setCurrentTask, saveTask }) => {
+const CreateTaskFragment = ({ visible, closePopover, currentProject, currentTask, setCurrentTask, saveTask }) => {
     const { tasks } = useContext(Context);
 
     const onInputChange = (e, propName) => {
         setCurrentTask({ ...currentTask, [propName]: e.target.value });
+    }
+
+    const onDeadlineChange = (e) => {
+        console.log(e.target.value)
+        setCurrentTask({ ...currentTask, deadLine: e.target.value })
     }
 
     const onPriorityChange = (e) => {
@@ -32,7 +37,7 @@ const CreateTaskFragment = ({ visible, closePopover, currentTask, setCurrentTask
             <div className="crt-task-container" >
                 <div>
                     <p>Project</p>
-                    <select onChange={(e) => onProjectChange(e)} value={currentTask.projectId}>
+                    <select onChange={(e) => onProjectChange(e)} value={currentProject ? currentProject : currentTask.projectId} disabled={!!currentProject}>
                         {tasks._projects.map((project) => {
                             return (
                                 <option key={project.id} value={project.id}>{project.name}</option>
@@ -44,6 +49,8 @@ const CreateTaskFragment = ({ visible, closePopover, currentTask, setCurrentTask
                 <input onChange={(e) => onInputChange(e, "name")} value={currentTask.name} />
                 <p>Description</p>
                 <textarea onChange={(e) => onInputChange(e, "description")} value={currentTask.description} />
+                <p>Deadline</p>
+                <input id="datetime" onChange={(e) => onDeadlineChange(e)} type="date" value={currentTask.deadLine} />
                 <div>
                     <p>Priority</p>
                     <select onChange={(e) => onPriorityChange(e)} value={currentTask.priorityId}>
