@@ -23,7 +23,9 @@ const TasksList = observer(({ statusFilter, priorityFilter, projectFilter, curre
     useEffect(() => {
         fetchPriorities().then(data => tasks.setPriorities(data))
         fetchStatuses().then(data => tasks.setStatuses(data))
-        fetchProjects().then(data => tasks.setProjects(data.rows))
+        fetchProjects().then(data => {
+            tasks.setProjects(data.rows)
+        })
     }, [tasks]);
 
     useEffect(() => {

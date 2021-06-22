@@ -1,17 +1,7 @@
 .boardContainer {
     width: 25%;
-    height: 70vh;
-    border: 3px solid black;
-    border-radius: 10px;
-    margin: 0px 5px;
+    border-right: 1px solid black;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
     overflow-y: auto;
-}
-
-.boarder-title {
-    text-align: center;
-    padding-bottom: 5px;
-    border-bottom: 2px solid black;
-    width: 100%;
-    margin: 0px;
-    color: brown;
 }
