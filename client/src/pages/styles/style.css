@@ -123,3 +123,18 @@
     font-size: 20px;
     color: rgb(61, 61, 61);
 }
+
+.boards {
+    width: 100%;
+    margin: 0px 0px 0px 5px;
+    border-left: 1px solid black;
+}
+
+.board-title {
+    text-align: center;
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
+    width: 100%;
+    margin: 0px;
+    color: brown;
+}
