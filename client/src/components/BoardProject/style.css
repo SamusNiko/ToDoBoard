@@ -1,0 +1,25 @@
+.board-project {
+    box-sizing: border-box;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border: 2px solid gray;
+    border-radius: 5px 5px 5px 5px;
+}
+
+.board-project-header {
+    border-bottom: 1px solid gray;
+    padding: 5px 5px 5px 5px;
+}
+
+.expand-btn {
+    width: 30px;
+    height: 30px;
+    background: none;
+    border: none;
+    font-size: 14px;
+}
+
+.expand-btn:hover {
+    cursor: pointer;
+    color: gray
+}
