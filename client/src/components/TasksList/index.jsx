@@ -1,4 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import TaskItem from '../TaskItem';
 import CreateTaskFragment from "../CreateTaskFragment";
 import { Context } from '../../index.jsx';
@@ -17,6 +18,7 @@ const TasksList = observer(({ statusFilter, priorityFilter, projectFilter, curre
     }
 
     const { tasks } = useContext(Context);
+    const location = useLocation();
     const [createTaskPopoverVisible, setPopoverVisible] = useState(false);
     const [currentTask, setCurrentTask] = useState(defaultTask);
 
@@ -77,7 +79,7 @@ const TasksList = observer(({ statusFilter, priorityFilter, projectFilter, curre
                 <button onClick={() => openCreateTaskPopover()} className="crt-task-btn">Create Task</button>
                 <CreateTaskFragment currentProject={currentProject} currentTask={currentTask} saveTask={saveTask} setCurrentTask={setCurrentTask} visible={createTaskPopoverVisible} closePopover={closeCreateTaskPopover} />
             </div>
-            <div className="tasks-container">
+            <div className={location.pathname.match(/\w+/)[0] === 'tasks' ? 'tasks-container-list ' : 'tasks-container-project-details'}>
 
                 {tasks._tasks.length ? tasks._tasks.map((task) => {
                     return (

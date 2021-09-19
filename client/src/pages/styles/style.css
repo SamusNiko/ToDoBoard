@@ -65,6 +65,8 @@
 
 .project-page {
     flex-wrap: wrap;
+    max-height: 85vh;
+    overflow-y: auto;
 }
 
 .add-proj-btn {
@@ -127,14 +129,22 @@
 .boards {
     width: 100%;
     margin: 0px 0px 0px 5px;
-    border-left: 1px solid black;
+}
+
+.board-headers {
+    border: 1px solid gray;
+    border-radius: 5px;
 }
 
 .board-title {
     text-align: center;
-    border-bottom: 1px solid black;
-    border-right: 1px solid black;
     width: 100%;
     margin: 0px;
     color: brown;
+}
+
+.boards-container {
+    margin-top: 10px;
+    max-height: 80vh;
+    overflow-y: auto;
 }
