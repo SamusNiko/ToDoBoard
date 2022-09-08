@@ -10,35 +10,12 @@
     box-sizing: border-box;
 }
 
-.crt-task-btn {
-    font-size: 14px;
-    font-weight: 600;
-    margin: 5px 0px 5px 5px;
-    border: 2px solid black;
-    border-radius: 5px;
-    width: 150px;
-    height: 30px;
-    padding: 5px;
-    color: white;
-    background-color: rgb(0, 154, 201);
-}
-
-.crt-task-btn:hover {
-    cursor: pointer;
-    background-color: rgba(0, 154, 201, 0.7);
-}
-
-.crt-task-btn:active {
-    cursor: pointer;
-    background-color: rgba(0, 154, 201, 0.438);
-}
-
 .filter {
-    margin: 5px 10px;
+    margin: 5px 5px;
+    color: #FFFFFF;
 }
 
 .filter label {
-    font-weight: 600;
     margin-right: 5px;
 }
 
@@ -76,11 +53,11 @@
 
 .project-tile {
     box-sizing: border-box;
-    color: black;
+    color: #FFFFFF;
     width: 24%;
     min-width: 200px;
     height: 200px;
-    border: 2px solid black;
+    background-color: #454545;
     border-radius: 10px;
     padding: 10px;
     margin: 0px 0px 20px 1%;
@@ -98,16 +75,14 @@
     justify-content: space-between;
 }
 
-.project-details-container {
-    padding-left: 5px;
-}
-
 .project-details-title {
     font-size: 40px;
+    margin-left: 5px;
 }
 
 .project-details-description {
     font-size: 25px;
+    margin-left: 5px;
 }
 
 .project-tasks-container {
@@ -128,23 +103,36 @@
 
 .boards {
     width: 100%;
-    margin: 0px 0px 0px 5px;
 }
 
 .board-headers {
-    border: 1px solid gray;
-    border-radius: 5px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    margin-bottom: -5px;
 }
 
 .board-title {
     text-align: center;
     width: 100%;
     margin: 0px;
-    color: brown;
+    padding: 5px;
+}
+
+.board-title-1{
+    background-color: #116b86;
+}
+
+.board-title-2{
+    background-color: #FFC32C;
+}
+.board-title-3{
+    background-color: #ED4D4D;
+}
+.board-title-4{
+    background-color: #3F9469;
 }
 
 .boards-container {
-    margin-top: 10px;
     max-height: 80vh;
     overflow-y: auto;
 }

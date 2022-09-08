@@ -20,7 +20,7 @@ const Boards = observer(() => {
         <div className="boards">
             <div className="flex board-headers">
                 {tasks._statuses.map((status) =>
-                    <h2 className="board-title" key={status.name}>{status.name}</h2>
+                    <p className={`board-title board-title-${status.id}`} key={status.name}>{status.name}</p>
                 )}
             </div>
             <div className="boards-container">

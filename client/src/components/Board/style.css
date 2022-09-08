@@ -7,7 +7,3 @@
 .board-over {
     background: rgba(128, 128, 128, 0.329);
 }
-
-.boardContainer:nth-child(-n+3) {
-    border-right: 1px solid black;
-}

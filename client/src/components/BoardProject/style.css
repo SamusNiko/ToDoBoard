@@ -1,13 +1,12 @@
 .board-project {
     box-sizing: border-box;
-    margin-top: 5px;
     margin-bottom: 10px;
-    border: 2px solid gray;
+    border: 2px solid rgb(68, 65, 65);
     border-radius: 5px 5px 5px 5px;
 }
 
 .board-project-header {
-    border-bottom: 1px solid gray;
+    background-color: rgb(68, 65, 65);
     padding: 5px 5px 5px 5px;
 }
 
@@ -17,6 +16,7 @@
     background: none;
     border: none;
     font-size: 14px;
+    color: #FFFFFF;
 }
 
 .expand-btn:hover {

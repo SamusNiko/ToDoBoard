@@ -14,7 +14,7 @@ const ProjectDetails = () => {
     }, [id])
 
     return (
-        <div className="block project-details-container">
+        <div className="block">
             <div className="project-details-title">Project: <b>{project.name}</b></div>
             <div className="project-details-description">Description: {project.description}</div>
             <TasksList currentProject={id} priorityFilter={null} statusFilter={null} projectFilter={id} />

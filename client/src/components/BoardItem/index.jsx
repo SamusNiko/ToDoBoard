@@ -16,8 +16,8 @@ const BoardItem = ({ item, board, itemCount, dragStartHandler, dragOverHandler, 
             onDrop={(e) => dropHandler(e, board)}
         >
             <div className="boardItem-container">
-                <div>
-                    <div>{itemCount + 1}. {item.name}</div>
+                <div className="boardItem-content">
+                    <div>{item.name}</div>
                     <div><b>Deadline:</b> {item.deadLine ? date.toLocaleString('en-US', timeOptions) : '-'}</div>
                 </div>
                 <div className={setPriorityColor(item.priorityId) + " boardItem-priority"}>
