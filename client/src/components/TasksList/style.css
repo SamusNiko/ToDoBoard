@@ -1,19 +1,14 @@
 .tasks-container-list {
-    margin-left: 5px;
-    max-height: 77vh;
+    max-height: 80vh;
     overflow-y: auto;
-    border: 2px solid black;
     border-radius: 10px;
-    padding: 5px 5px 0px 0px;
+    margin-top: 5px;
 }
 
 .tasks-container-project-details {
-    margin-left: 5px;
     max-height: 72vh;
     overflow-y: auto;
-    border: 2px solid black;
     border-radius: 10px;
-    padding: 5px 5px 0px 0px;
 }
 
 .not-task-text {
@@ -24,12 +19,11 @@
 }
 
 .crt-task-btn {
-    font-size: 14px;
-    font-weight: 600;
-    margin: 5px 0px 5px 5px;
-    border: 2px solid black;
+    font-size: 15px;
+    border: 0px;
     border-radius: 5px;
     width: 150px;
+    margin-left: 5px;
     height: 30px;
     padding: 5px;
     color: white;

@@ -1,10 +1,10 @@
 .task-container {
     width: auto;
-    height: 90px;
-    border: 2px solid black;
+    color: #FFFFFF;
+    background-color: #454545;
     border-radius: 10px;
     padding: 5px 10px 5px 5px;
-    margin: 0px 0px 5px 5px;
+    margin: 5px;
 }
 
 .task-status-container {
@@ -24,15 +24,14 @@
     padding: 2px 8px;
     margin-left: auto;
     border-radius: 5px;
-    font-size: 18px;
-    font-weight: bold;
+    font-size: 15px;
 }
 
 .task-delete-btn {
     background: none;
     border: none;
     font-size: 18px;
-    color: red;
+    color: #f73c3c;
 }
 
 .task-delete-btn:hover {
@@ -45,18 +44,17 @@
     border: none;
     padding-top: 7px;
     font-size: 17px;
-    color: rgb(70, 60, 60);
+    color: #e5dddd;
 }
 
 .task-edit-btn:hover {
-    color: rgb(29, 24, 24);
+    color: rgb(131, 128, 128);
     cursor: pointer;
 }
 
 .task-priority {
     margin-top: 5px;
     font-size: 15px;
-    font-weight: bold;
 }
 
 .task-buttons-container {
@@ -67,6 +65,5 @@
 .task-title {
     font-size: 18px;
     font-weight: bold;
-    color: rgb(139, 9, 9);
     margin-bottom: 10px;
 }

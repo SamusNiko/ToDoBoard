@@ -15,18 +15,18 @@ const App = observer(() => {
 
     return (
         <BrowserRouter>
-            {user.isAuth ? <div className="main-area">
-                <div className="header-area" >
-                    <button onClick={onLogOutClick}>Log Out</button>
-                </div>
-                <div className="flex-container">
-                    <>
+            {user.isAuth ?
+                <div>
+                    <div className="main-page-container">
                         <Menu />
-                        <AppRouter />
-                    </>
-
-                </div>
-            </div> :
+                        <div className="content-container">
+                            <div className="header-container" >
+                                <button onClick={onLogOutClick}>Log Out</button>
+                            </div>
+                            <AppRouter />
+                        </div>
+                    </div>
+                </div> :
                 <AuthRouter />}
         </BrowserRouter >
     )

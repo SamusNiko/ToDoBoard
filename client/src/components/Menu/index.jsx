@@ -7,12 +7,12 @@ import "./style.css"
 
 const Menu = () => {
     return (
-        <div className="menu-content">
-            <NavLink className="menu-item" to={TASKS_LIST_ROUTE} ><FontAwesomeIcon icon={faTasks} /> Tasks</NavLink>
-            <NavLink className="menu-item" to={BOARDS_ROUTE} ><FontAwesomeIcon icon={faColumns} /> Boards</NavLink>
-            <NavLink className="menu-item" to={PROJECT_ROUTE} ><FontAwesomeIcon icon={faPaste} /> Projects</NavLink>
-            <NavLink className="menu-item" to={SETTINGS_ROUTE} ><FontAwesomeIcon icon={faCog} /> Settings</NavLink>
-            <NavLink className="menu-item" to={INFO_ROUTE} ><FontAwesomeIcon icon={faQuestionCircle} /> Info</NavLink>
+        <div className="menu-container">
+            <NavLink className="menu-item" activeClassName="menu-item-active" to={TASKS_LIST_ROUTE} ><FontAwesomeIcon icon={faTasks} /> Tasks</NavLink>
+            <NavLink className="menu-item" activeClassName="menu-item-active" to={BOARDS_ROUTE} ><FontAwesomeIcon icon={faColumns} /> Boards</NavLink>
+            <NavLink className="menu-item" activeClassName="menu-item-active" to={PROJECT_ROUTE} ><FontAwesomeIcon icon={faPaste} /> Projects</NavLink>
+            <NavLink className="menu-item" activeClassName="menu-item-active" to={SETTINGS_ROUTE} ><FontAwesomeIcon icon={faCog} /> Settings</NavLink>
+            <NavLink className="menu-item" activeClassName="menu-item-active" to={INFO_ROUTE} ><FontAwesomeIcon icon={faQuestionCircle} /> Info</NavLink>
         </div>
     )
 }

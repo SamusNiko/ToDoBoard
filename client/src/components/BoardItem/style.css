@@ -1,5 +1,5 @@
 .boardItem {
-    border: 1px solid rgb(139, 47, 47);
+    background-color: #454545;
     border-radius: 10px;
     height: auto;
     min-height: 60px;
@@ -16,11 +16,15 @@
 
 .boardItem-container {
     width: 100%;
-    display: flex;
+    position: relative;
+    padding-right: 60px;
     justify-content: space-between;
 }
 
 .boardItem-priority {
-    font-size: 14px;
-    font-weight: 600;
+    font-size: 12px;
+    position: absolute;
+    top:0;
+    right: 0;
+    flex-grow: 2;
 }
