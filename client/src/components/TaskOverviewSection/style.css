@@ -1,0 +1,10 @@
+.task-overview-section{
+    width: 30%;
+    max-width: 300px;
+    background-color: #454545;
+    border-radius: 7px;
+    padding: 5px;
+    margin-left: 5px;
+    height: 700px;
+    max-height: 85vh;
+}

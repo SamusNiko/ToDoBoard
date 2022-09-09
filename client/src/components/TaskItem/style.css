@@ -4,7 +4,12 @@
     background-color: #454545;
     border-radius: 10px;
     padding: 5px 10px 5px 5px;
-    margin: 5px;
+    margin: 0px 5px 5px 5px;
+}
+
+.task-container:hover {
+    background-color: #707070;
+    cursor: pointer;
 }
 
 .task-status-container {
@@ -18,6 +23,11 @@
 
 .task-description {
     width: 75%;
+}
+
+.task-description-deadline{
+    font-size: 13px;
+    color: #bdbdbd;
 }
 
 .task-status {

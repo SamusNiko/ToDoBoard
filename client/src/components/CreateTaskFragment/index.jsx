@@ -37,7 +37,7 @@ const CreateTaskFragment = ({ visible, closePopover, currentProject, currentTask
             <div className="crt-task-container" >
                 <div>
                     <p>Project</p>
-                    <select onChange={(e) => onProjectChange(e)} value={currentProject ? currentProject : currentTask.projectId} disabled={!!currentProject}>
+                    <select className="crt-task-status" onChange={(e) => onProjectChange(e)} value={currentProject ? currentProject : currentTask.projectId} disabled={!!currentProject}>
                         {tasks._projects.map((project) => {
                             return (
                                 <option key={project.id} value={project.id}>{project.name}</option>
@@ -46,14 +46,14 @@ const CreateTaskFragment = ({ visible, closePopover, currentProject, currentTask
                     </select>
                 </div>
                 <p>Name</p>
-                <input onChange={(e) => onInputChange(e, "name")} value={currentTask.name} />
+                <input className="crt-task-name" onChange={(e) => onInputChange(e, "name")} value={currentTask.name} />
                 <p>Description</p>
-                <textarea onChange={(e) => onInputChange(e, "description")} value={currentTask.description} />
+                <textarea className="crt-task-description" onChange={(e) => onInputChange(e, "description")} value={currentTask.description} />
                 <p>Deadline</p>
-                <input id="datetime" onChange={(e) => onDeadlineChange(e)} type="date" value={currentTask.deadLine} />
+                <input id="datetime" className="crt-task-date" onChange={(e) => onDeadlineChange(e)} type="date" value={currentTask.deadLine} />
                 <div>
                     <p>Priority</p>
-                    <select onChange={(e) => onPriorityChange(e)} value={currentTask.priorityId}>
+                    <select className="crt-task-status" onChange={(e) => onPriorityChange(e)} value={currentTask.priorityId}>
                         {tasks._priorities.map((priority) => {
                             return (
                                 <option key={priority.id} value={priority.id}>{priority.name}</option>

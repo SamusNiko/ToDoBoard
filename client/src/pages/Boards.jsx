@@ -4,6 +4,7 @@ import { observer } from "mobx-react-lite";
 import './styles/style.css';
 import { fetchPriorities, fetchStatuses, fetchProjects } from '../http/taskApi';
 import BoardProject from '../components/BoardProject';
+import TaskOverviewSection from '../components/TaskOverviewSection';
 
 const Boards = observer(() => {
     const { tasks } = useContext(Context);
@@ -17,24 +18,27 @@ const Boards = observer(() => {
     }, [tasks]);
 
     return (
-        <div className="boards">
-            <div className="flex board-headers">
-                {tasks._statuses.map((status) =>
-                    <p className={`board-title board-title-${status.id}`} key={status.name}>{status.name}</p>
-                )}
-            </div>
-            <div className="boards-container">
-                {tasks._projects.map((project) => {
-                    if (project.tasks && project.tasks.length) {
-                        return (
-                            <BoardProject key={`${project.id}board`} project={project} statuses={tasks._statuses} />
-                        )
-                    } else {
-                        return "";
-                    }
-                })}
+        <div className="flex">
+            <div className="boards">
+                <div className="flex board-headers">
+                    {tasks._statuses.map((status) =>
+                        <p className={`board-title board-title-${status.id}`} key={status.name}>{status.name}</p>
+                    )}
+                </div>
+                <div className="boards-container">
+                    {tasks._projects.map((project) => {
+                        if (project.tasks && project.tasks.length) {
+                            return (
+                                <BoardProject key={`${project.id}board`} project={project} statuses={tasks._statuses} />
+                            )
+                        } else {
+                            return "";
+                        }
+                    })}
+                </div >
             </div >
-        </div >
+            {/* <TaskOverviewSection /> */}
+        </div>
     )
 })
 

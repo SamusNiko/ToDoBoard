@@ -18,10 +18,10 @@ const BoardProject = observer(({ project, statuses }) => {
 
     function addStyleOnHover(e) {
         if (e.target.className === "boardItem") {
-            e.target.style.boxShadow = '0 2px 3px gray';
+            e.target.style.boxShadow = '0 2px 3px #7a7a7add';
         }
         if (e.target.className === "boardContainer") {
-            e.target.style.background = 'rgba(128, 128, 128, 0.329)';
+            e.target.style.background = '#7a7a7add';
         }
     }
 
@@ -81,7 +81,7 @@ const BoardProject = observer(({ project, statuses }) => {
         <div className="board-project">
             <div className="flex board-project-header">
                 <button className="expand-btn" onClick={onExpandButtonClick}><FontAwesomeIcon icon={isExpanded ? faChevronDown : faChevronRight} /></button>
-                <h2 >{project.name}</h2>
+                <h2>{project.name}</h2>
             </div>
 
             <div className="flex" style={isExpanded ? { display: "flex" } : { display: "none" }}>

@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
 import TasksList from '../components/TasksList';
+import TaskOverviewSection from '../components/TaskOverviewSection';
 import { Context } from '../index.jsx';
 import { observer } from "mobx-react-lite";
 import './styles/style.css';
@@ -63,7 +64,10 @@ const Tasks = observer(() => {
                     </select>
                 </div>
             </div>
-            <TasksList currentProject={null} priorityFilter={priorityFilter} statusFilter={statusFilter} projectFilter={projectFilter} />
+            <div className="flex">
+                <TasksList currentProject={null} priorityFilter={priorityFilter} statusFilter={statusFilter} projectFilter={projectFilter} />
+                <TaskOverviewSection style={{marginTop: "35px"}}/>
+            </div>
         </div>
     )
 })

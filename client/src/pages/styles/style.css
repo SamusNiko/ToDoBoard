@@ -31,6 +31,10 @@
     font-size: 16px;
 }
 
+.task-list-container{
+    width: 70%;
+}
+
 .tasks-container {
     margin-left: 5px;
     max-height: 80vh;
@@ -106,8 +110,7 @@
 }
 
 .board-headers {
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
+    position: relative;
     margin-bottom: -5px;
 }
 
@@ -120,6 +123,7 @@
 
 .board-title-1{
     background-color: #116b86;
+    border-top-left-radius: 10px;
 }
 
 .board-title-2{
@@ -130,6 +134,7 @@
 }
 .board-title-4{
     background-color: #3F9469;
+    border-top-right-radius: 10px;
 }
 
 .boards-container {

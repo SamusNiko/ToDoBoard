@@ -19,7 +19,7 @@ const TaskItem = ({ task, onEditTaskClick, onDeleteTask }) => {
             <div className="task-description">
                 <p className="task-title">{task.name}</p>
                 <p>{task.description}</p>
-                <div><b>Deadline:</b> {task.deadLine ? date.toLocaleString('en-US', timeOptions) : '-'}</div>
+                <div className="task-description-deadline"><b>Deadline:</b> {task.deadLine ? date.toLocaleString('en-US', timeOptions) : '-'}</div>
             </div>
             <div className="task-status-container">
                 <p className={setStatusColor(task.statusId) + " task-status"} >{tasks.getStatusName(task.statusId)}</p>

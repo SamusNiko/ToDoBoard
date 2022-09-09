@@ -11,7 +11,46 @@
     border-radius: 10px;
     background-color: #3E3E3E;
     padding: 20px 20px;
-    width: 700px;
+    width: 600px;
     height: 400px;
     margin: 200px auto;
+}
+.crt-task-container input,textarea,option{
+    font-family: 'Varela Round', sans-serif;
+}
+
+.crt-task-status{
+    width: 120px;
+    height: 25px;
+    border: none;
+    padding: 0px;
+    border-radius: 7px;
+}
+
+.crt-task-status option{
+    width: 120px;
+    height: 25px;
+}
+
+.crt-task-name{
+    box-sizing: border-box;
+    width: 70%;
+    border: none;
+    height: 25px;
+    border-radius: 7px;
+}
+
+.crt-task-date{
+    width: 50%;
+    height: 25px;
+    border: none;
+    border-radius: 7px;
+}
+
+.crt-task-description{
+    width: 70%;
+    height: 100px;
+    resize: none;
+    border: none;
+    border-radius: 7px;
 }
