@@ -18,6 +18,7 @@ const Boards = observer(() => {
     }, [tasks]);
 
     return (
+<<<<<<< HEAD
         <div className="flex">
             <div className="boards">
                 <div className="flex board-headers">
@@ -36,6 +37,24 @@ const Boards = observer(() => {
                         }
                     })}
                 </div >
+=======
+        <div className="boards">
+            <div className="flex board-headers">
+                {tasks._statuses.map((status) =>
+                    <p className={`board-title board-title-${status.id}`} key={status.name}>{status.name}</p>
+                )}
+            </div>
+            <div className="boards-container">
+                {tasks._projects.map((project) => {
+                    if (project.tasks && project.tasks.length) {
+                        return (
+                            <BoardProject key={`${project.id}board`} project={project} statuses={tasks._statuses} />
+                        )
+                    } else {
+                        return "";
+                    }
+                })}
+>>>>>>> 5d4ad0967b61bdb82bdeea87b1f8b58a1bc85d97
             </div >
             {/* <TaskOverviewSection /> */}
         </div>
