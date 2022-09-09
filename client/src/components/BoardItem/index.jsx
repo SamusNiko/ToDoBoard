@@ -18,11 +18,7 @@ const BoardItem = ({ item, board, itemCount, dragStartHandler, dragOverHandler, 
             <div className="boardItem-container">
                 <div className="boardItem-content">
                     <div>{item.name}</div>
-<<<<<<< HEAD
                     <div className="boardItem-details"><b>Deadline:</b> {item.deadLine ? date.toLocaleString('en-US', timeOptions) : '-'}</div>
-=======
-                    <div><b>Deadline:</b> {item.deadLine ? date.toLocaleString('en-US', timeOptions) : '-'}</div>
->>>>>>> 5d4ad0967b61bdb82bdeea87b1f8b58a1bc85d97
                 </div>
                 <div className={setPriorityColor(item.priorityId) + " boardItem-priority"}>
                     {tasks.getPriorityName(item.priorityId)}

@@ -4,12 +4,8 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     height: 100vh;
-<<<<<<< HEAD
     background-color: #292929;
     color:#FFFFFF;
-=======
-    background-color: #FAFAFA
->>>>>>> 5d4ad0967b61bdb82bdeea87b1f8b58a1bc85d97
 }
 
 button{

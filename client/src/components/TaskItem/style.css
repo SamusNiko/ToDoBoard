@@ -4,16 +4,12 @@
     background-color: #454545;
     border-radius: 10px;
     padding: 5px 10px 5px 5px;
-<<<<<<< HEAD
     margin: 0px 5px 5px 5px;
 }
 
 .task-container:hover {
     background-color: #707070;
     cursor: pointer;
-=======
-    margin: 5px;
->>>>>>> 5d4ad0967b61bdb82bdeea87b1f8b58a1bc85d97
 }
 
 .task-status-container {
