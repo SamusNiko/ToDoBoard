@@ -13,7 +13,7 @@ const TasksList = observer(({ statusFilter, priorityFilter, projectFilter, curre
         description: "",
         statusId: 1,
         priorityId: 1,
-        projectId: currentProject ? currentProject : 2,
+        projectId: currentProject ? currentProject : 1,
         deadLine: new Date().toISOString() //Default tasks project
     }
 
