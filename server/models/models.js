@@ -25,7 +25,25 @@ const Priority = sequelize.define('priority', {
     name: { type: DataTypes.STRING, unique: true, allowNull: false }
 });
 
+const User = sequelize.define('user', {
+    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+    username: { type: DataTypes.STRING, allowNull: false, unique: true },
+    email: { type: DataTypes.STRING, allowNull: false, unique: true, isEmail: true },
+    password: { type: DataTypes.STRING, allowNull: false },
+    activationLink: { type: DataTypes.STRING, allowNull: true, defaultValue: "" },
+    isActivated: { type: DataTypes.BOOLEAN, defaultValue: false }
+});
+
+const Token = sequelize.define('token', {
+    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+    userId: { type: DataTypes.INTEGER, unique: true, allowNull: false},
+    refreshToken: { type: DataTypes.STRING, allowNull: false }
+});
+
 //Describe relationship of our models
+
+User.hasOne(Token, { foreignKey: "userId" });
+Token.belongsTo(User, { foreignKey: "userId" });
 
 Status.hasMany(Task)
 Task.belongsTo(Status)
@@ -40,5 +58,7 @@ module.exports = {
     Project,
     Task,
     Status,
-    Priority
+    Priority,
+    User,
+    Token
 }
