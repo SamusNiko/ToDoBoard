@@ -27,7 +27,7 @@ class TaskController {
         const { id } = req.body;
         const task = await Task.findOne({
             where: { id }
-        }, );
+        });
         await task.destroy();
         return res.json("Task was deleted successfully");
     }

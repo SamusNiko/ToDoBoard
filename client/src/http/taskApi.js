@@ -10,7 +10,7 @@ export const fetchTasks = async(statusId, priorityId, projectId) => {
     if (projectId === 0) {
         projectId = null;
     }
-    const { data } = await $host.get('api/task', {
+    const { data } = await $host.get('/task', {
         params: {
             statusId,
             priorityId,
@@ -21,7 +21,7 @@ export const fetchTasks = async(statusId, priorityId, projectId) => {
 }
 
 export const fetchProjects = async(withTasks) => {
-    const { data } = await $host.get('api/project', {
+    const { data } = await $host.get('/project', {
         params: {
             withTasks
         }
@@ -30,46 +30,46 @@ export const fetchProjects = async(withTasks) => {
 }
 
 export const fetchOneProject = async(id) => {
-    const { data } = await $host.get('api/project/' + id);
+    const { data } = await $host.get('/project/' + id);
     return data;
 }
 
 export const fetchStatuses = async() => {
-    const { data } = await $host.get('api/status');
+    const { data } = await $host.get('/status');
     return data;
 }
 
 export const fetchPriorities = async() => {
-    const { data } = await $host.get('api/priority');
+    const { data } = await $host.get('/priority');
     return data
 }
 
-export const fetchOneDevice = async(id) => {
-    const { data } = await $host.get('api/task/' + id);
+export const fetchOneTask = async(id) => {
+    const { data } = await $host.get('/task/' + id);
     return data;
 }
 
 export const createTask = async(task) => {
-    const { data } = await $host.post('api/task', task);
+    const { data } = await $host.post('/task', task);
     return data;
 }
 
 export const createProject = async(project) => {
-    const { data } = await $host.post('api/project', project);
+    const { data } = await $host.post('/project', project);
     return data;
 }
 
 export const updateTask = async(task) => {
-    const { data } = await $host.put('api/task', task);
+    const { data } = await $host.put('/task', task);
     return data
 }
 
 export const deleteTask = async(task) => {
-    const { data } = await $host.delete('api/task', { data: task });
+    const { data } = await $host.delete('/task', { data: task });
     return data
 }
 
 export const deleteProject = async(project) => {
-    const { data } = await $host.delete('api/project', { data: project });
+    const { data } = await $host.delete('/project', { data: project });
     return data
 }

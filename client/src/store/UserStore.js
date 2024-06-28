@@ -1,25 +1,75 @@
 import { makeAutoObservable } from 'mobx';
+import AuthService from '../http/authApi';
+import axios from 'axios';
 
 export default class UserStore {
     constructor() {
-        this._userName = "Kolumbas";
-        this._isAuth = true;
+        this.user = {};
+        this.isAuth = false;
+        this.isLoading = false;
         makeAutoObservable(this);
     }
 
-    setUser(userName) {
-        this._userName = userName
+    setAuth(bool) {
+        debugger
+        this.isAuth = bool;
     }
 
-    setIsAuth(isAuth) {
-        this._isAuth = isAuth
+    setUser(user) {
+        this.user = user;
     }
 
-    get userName() {
-        return this._userName;
+    setLoading(bool) {
+        this.isLoading = bool;
     }
 
-    get isAuth() {
-        return this._isAuth;
+    async login(email, password) {
+        try {
+            const response = await AuthService.login(email, password);
+            console.log(response)
+            localStorage.setItem('token', response.data.accessToken);
+            this.setAuth(true);
+            this.setUser(response.data.user);
+        } catch (error) {
+            console.log(error.response?.data?.message);
+        }
+    }
+
+    async registration(email, password) {
+        try {
+            const response = await AuthService.registration(email, password);
+            console.log(response)
+            localStorage.setItem('token', response.data.accessToken);
+            this.setAuth(true);
+            this.setUser(response.data.user);
+        } catch (error) {
+            console.log(error.response?.data?.message);
+        }
+    }
+
+    async logout() {
+        try {
+            const response = await AuthService.logout();
+            localStorage.removeItem('token');
+            this.setAuth(false);
+            this.setUser({});
+        } catch (error) {
+            console.log(error.response?.data?.message);
+        }
+    }
+
+    async checkAuth() {
+        this.setLoading(true);
+        try {
+            const response = await axios.get(`${process.env.REACT_APP_API_URL}/refresh`, { withCredentials: true })
+            console.log(response);
+            localStorage.setItem('token', response.data.accessToken);
+            this.setAuth(true);
+            this.setUser(response.data.user);
+        } catch (e) {
+            console.log(e);
+        } finally {
+            this.setLoading(false);
+        }
     }
 }

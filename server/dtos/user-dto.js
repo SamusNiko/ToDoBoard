@@ -1,6 +1,6 @@
 //dto - data transfer object
 
-module.exports = class UserDto {
+module.exports = class UserDto { //dto - data transfer object
     username;
     email;
     id;
