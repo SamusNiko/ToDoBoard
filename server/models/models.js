@@ -45,6 +45,12 @@ const Token = sequelize.define('token', {
 User.hasOne(Token, { foreignKey: "userId" });
 Token.belongsTo(User, { foreignKey: "userId" });
 
+User.hasMany(Task, {as: "tasks"})
+Task.belongsTo(User)
+
+User.hasMany(Project, {as: "projects"})
+Project.belongsTo(User)
+
 Status.hasMany(Task)
 Task.belongsTo(Status)
 

@@ -3,7 +3,8 @@ const { Project, Task } = require('../models/models');
 class ProjectController {
     async create(req, res) {
         const { name, description } = req.body;
-        const project = await Project.create({ name, description });
+        const userId = req.headers['userid']; // Получение userId из заголовков
+        const project = await Project.create({ name, description, userId  });
         return res.json(project);
     }
 
@@ -27,13 +28,17 @@ class ProjectController {
 
     async getAllProject(req, res) {
         const { withTasks } = req.query;
+        const userId = req.headers['userid']; // Получение userId из заголовков
         let project;
         if (withTasks) {
             project = await Project.findAndCountAll({
-                include: [{ model: Task, as: 'tasks' }]
+                include: [{ model: Task, as: 'tasks' }],
+                where: {userId}
             }, );
         } else {
-            project = await Project.findAndCountAll();
+            project = await Project.findAndCountAll({
+                 where: { userId } 
+            });
         }
         return res.json(project);
     }

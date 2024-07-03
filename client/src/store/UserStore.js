@@ -2,7 +2,7 @@ import { makeAutoObservable } from 'mobx';
 import AuthService from '../http/authApi';
 import axios from 'axios';
 
-export default class UserStore {
+class UserStore {
     constructor() {
         this.user = {};
         this.isAuth = false;
@@ -11,7 +11,6 @@ export default class UserStore {
     }
 
     setAuth(bool) {
-        debugger
         this.isAuth = bool;
     }
 
@@ -21,6 +20,10 @@ export default class UserStore {
 
     setLoading(bool) {
         this.isLoading = bool;
+    }
+
+    get userId(){
+        return this.user.id
     }
 
     async login(email, password) {
@@ -73,3 +76,6 @@ export default class UserStore {
         }
     }
 }
+
+const userStore = new UserStore();
+export default userStore;

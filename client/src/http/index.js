@@ -1,4 +1,5 @@
 import axios from "axios";
+import UserStore from "../store/UserStore";
 
 const $host = axios.create({
     baseURL: process.env.REACT_APP_API_URL,
@@ -7,6 +8,7 @@ const $host = axios.create({
 
 $host.interceptors.request.use((config) => {
     config.headers.Authorization = `Bearer ${localStorage.getItem('token')}`
+    config.headers.UserId = UserStore.userId
     return config;
 })
 
