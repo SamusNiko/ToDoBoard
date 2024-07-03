@@ -1,9 +1,16 @@
 const { Task } = require('../models/models');
+const ApiError = require('../error/ApiError');
+
 
 class TaskController {
-    async create(req, res) {
+    async create(req, res, next) {
         const { name, description, statusId, priorityId, projectId, deadLine } = req.body;
-        const task = await Task.create({ name, description, statusId, priorityId, projectId, deadLine });
+        const userId = req.headers['userid']; // Получение userId из заголовков
+        console.log("Received userId:", userId);
+        if (!userId) {
+            return next(ApiError.BadRequest('User ID не указан'));
+        }
+        const task = await Task.create({ name, description, statusId, priorityId, projectId, deadLine, userId});
         return res.json(task);
     }
 
@@ -12,7 +19,6 @@ class TaskController {
         const task = await Task.findOne({
             where: { id }
         }, );
-        console.log(task);
         task.name = name;
         task.description = description;
         task.statusId = statusId;
@@ -32,9 +38,17 @@ class TaskController {
         return res.json("Task was deleted successfully");
     }
 
-    async getAllTasks(req, res) {
+    async getAllTasks(req, res, next) {
         let { statusId, priorityId, projectId } = req.query;
         const parameters = {};
+        const userId = req.headers['userid']; // Получение userId из заголовков
+        console.log("Received userId:", userId);
+        if (userId) {
+            parameters.userId = userId;
+        } else {
+            return next(ApiError.BadRequest('User ID не указан'));
+        }
+        
         if (statusId) {
             parameters.statusId = statusId;
         }
@@ -44,6 +58,7 @@ class TaskController {
         if (projectId) {
             parameters.projectId = projectId;
         }
+        
         // page = page || 1
         // limit = limit || 9
         // let offset = page * limit - limit
@@ -65,9 +80,9 @@ class TaskController {
     }
 
     async getTaskById(req, res) {
-        const { id } = req.params;
+        const { id, userId } = req.params;
         const task = await Task.findOne({
-            where: { id }
+            where: { id, userId }
         }, );
         return res.json(task);
     }
